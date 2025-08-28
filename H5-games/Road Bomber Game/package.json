@@ -1,21 +1,13 @@
 {
-  "name": "h5-jump-game",
+  "name": "Road Bomber",
   "version": "1.0.0",
-  "description": "A simple HTML5 jumping game where the player jumps to the ceiling and moves forward.",
-  "main": "src/game.js",
-  "scripts": {
-    "start": "live-server src"
-  },
+  "description": "A simple HTML5 game where the player Moves to the ceiling/floor and moves forward.",
+
   "keywords": [
     "html5",
     "game",
-    "jump",
     "javascript"
   ],
-  "author": "Your Name",
-  "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {
-    "live-server": "^1.2.1"
-  }
+  "author": "Joshua Ruiz",
+  "dependencies": {}
 }
