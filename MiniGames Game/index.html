@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minigame Collection</title>
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+<body>
+    <!-- Main Menu Screen -->
+    <div id="main-menu-screen" class="screen active">
+        <div class="container">
+            <h1 class="game-title">Choose a Game!</h1>
+            <p class="game-subtitle">Choose your minigame!</p>
+            <div class="menu-buttons">
+                <button id="button-game-select" class="btn btn-primary">Button Game</button>
+                <button id="snake-game-select" class="btn btn-primary">Snake Game</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button Game Home Screen -->
+    <div id="button-home-screen" class="screen">
+        <div class="container">
+            <h1 class="game-title">Button Game</h1>
+            <p class="game-subtitle">Test your reflexes!</p>
+            <div class="menu-buttons">
+                <button id="button-start-btn" class="btn btn-primary">Start Game</button>
+                <button id="button-how-to-play-btn" class="btn btn-secondary">How to Play</button>
+                <button id="button-back-to-main" class="btn btn-tertiary">Back to Main Menu</button>
+            </div>
+            <div class="high-score">
+                <p>High Score: <span id="button-high-score-display">0</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button Game How to Play Screen -->
+    <div id="button-how-to-play-screen" class="screen">
+        <div class="container">
+            <h2>Button Game - How to Play</h2>
+            <div class="instructions">
+                <ul>
+                    <li>Click the BLUE button as fast as possible when it appears</li>
+                    <li>AVOID clicking the RED button - it deducts 10 points!</li>
+                    <li>Both buttons appear simultaneously on the screen</li>
+                    <li>You have 15 seconds to get the highest score possible</li>
+                    <li>Faster clicks on blue buttons give higher scores</li>
+                    <li>Try to beat your high score!</li>
+                </ul>
+            </div>
+            <button id="button-back-to-home-btn" class="btn btn-secondary">Back to Game Menu</button>
+        </div>
+    </div>
+
+    <!-- Button Game Screen -->
+    <div id="button-game-screen" class="screen">
+        <div class="game-header">
+            <div class="score">Score: <span id="button-current-score">0</span></div>
+            <div class="timer">Time: <span id="button-time-left">15</span>s</div>
+        </div>
+        <div class="game-area" id="button-game-area">
+            <button id="reaction-button" class="reaction-btn">Click Me!</button>
+            <button id="penalty-button" class="penalty-btn">Avoid Me!</button>
+        </div>
+    </div>
+
+    <!-- Button Game Over Screen -->
+    <div id="button-game-over-screen" class="screen">
+        <div class="container">
+            <h2>Button Game Over!</h2>
+            <div class="final-score">
+                <p>Your Score: <span id="button-final-score">0</span></p>
+                <p id="button-new-high-score" class="new-high-score" style="display: none;">🎉 New High Score! 🎉</p>
+            </div>
+            <div class="menu-buttons">
+                <button id="button-play-again-btn" class="btn btn-primary">Play Again</button>
+                <button id="button-back-to-menu-btn" class="btn btn-secondary">Back to Game Menu</button>
+                <button id="button-back-to-main-btn" class="btn btn-tertiary">Back to Main Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Snake Game Home Screen -->
+    <div id="snake-home-screen" class="screen">
+        <div class="container">
+            <h1 class="game-title">Snake Game</h1>
+            <p class="game-subtitle">Eat and grow!</p>
+            <div class="menu-buttons">
+                <button id="snake-start-btn" class="btn btn-primary">Start Game</button>
+                <button id="snake-how-to-play-btn" class="btn btn-secondary">How to Play</button>
+                <button id="snake-back-to-main" class="btn btn-tertiary">Back to Main Menu</button>
+            </div>
+            <div class="high-score">
+                <p>High Score: <span id="snake-high-score-display">0</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Snake Game How to Play Screen -->
+    <div id="snake-how-to-play-screen" class="screen">
+        <div class="container">
+            <h2>Snake Game - How to Play</h2>
+            <div class="instructions">
+                <ul>
+                    <li>Use ARROW KEYS or WASD to control the snake</li>
+                    <li>Eat the red food to grow and earn points</li>
+                    <li>Don't hit the walls or your own tail!</li>
+                    <li>The snake moves faster as you grow</li>
+                    <li>Try to beat your high score!</li>
+                </ul>
+            </div>
+            <button id="snake-back-to-home-btn" class="btn btn-secondary">Back to Game Menu</button>
+        </div>
+    </div>
+
+    <!-- Snake Game Screen -->
+    <div id="snake-game-screen" class="screen">
+        <div class="game-header">
+            <div class="score">Score: <span id="snake-current-score">0</span></div>
+            <div class="game-info">Length: <span id="snake-length">3</span></div>
+        </div>
+        <canvas id="snake-canvas" width="500" height="500"></canvas>
+        </div>
+    </div>
+
+    <!-- Snake Game Over Screen -->
+    <div id="snake-game-over-screen" class="screen">
+        <div class="container">
+            <h2>Snake Game Over!</h2>
+            <div class="final-score">
+                <p>Your Score: <span id="snake-final-score">0</span></p>
+                <p>Snake Length: <span id="snake-final-length">3</span></p>
+                <p id="snake-new-high-score" class="new-high-score" style="display: none;">🎉 New High Score! 🎉</p>
+            </div>
+            <div class="menu-buttons">
+                <button id="snake-play-again-btn" class="btn btn-primary">Play Again</button>
+                <button id="snake-back-to-menu-btn" class="btn btn-secondary">Back to Game Menu</button>
+                <button id="snake-back-to-main-btn" class="btn btn-tertiary">Back to Main Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="src/js/script.js"></script>
+</body>
+</html>
