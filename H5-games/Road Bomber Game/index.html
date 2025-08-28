@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Road Bomber</title>
+<link rel="stylesheet" href="src/css/style.css">
+
+</head>
+<body>
+
+<!-- Home Screen -->
+<div id="homeScreen" class="screen">
+  <div class="screen-content">
+    <h1>Road Bomber</h1>
+    <p>Jump between the floor and ceiling. Avoid obstacles, collect coins. How far can you go?</p>
+    <button id="playBtn">Play</button>
+    <button id="howToPlayBtn">How to Play</button>
+  </div>
+</div>
+
+<!-- How to Play Screen -->
+<div id="howToPlayScreen" style="display: none;">
+  <h1>How to Play</h1>
+  <p>Use SPACE to jump between floor and ceiling.<br>Avoid holes and enemies.</p>
+  <button id="backBtn">Back</button>
+</div>
+
+<!-- Game Over Screen -->
+<div id="gameOverScreen" class="screen hidden">
+  <div class="screen-content">
+    <h1>Game Over</h1>
+    <p id="highScoreTextDistance">Distance HighScore: 0</p>
+    <p id="highScoreTextCoins">Coins HighScore: 0</p>
+    <button id="playAgainBtn">Play Again</button>
+    <button id="mainMenuBtn">Main Menu</button>
+  </div>
+</div>
+
+<!-- Game Canvas -->
+
+<div id="distanceHUD" class="hud hidden">
+  <div id="distanceText">Distance: 0</div>
+  <div id="coinsText">Coins: 0</div>
+</div>
+<canvas id="gameCanvas"></canvas>
+<audio id="bgMusic" src="src/assets/audio/background_music.mp3" loop></audio>
+
+<script src="src/js/components/Entity.js"></script>
+<script src="src/js/components/Coin.js"></script>
+<script src="src/js/components/Enemy.js"></script>
+<script src="src/js/components/Hole.js"></script>
+<script src="src/js/components/Platform.js"></script>
+<script src="src/js/components/Player.js"></script>
+<script src="src/js/game/EntityManager.js"></script>
+<script src="src/js/game/gameManager.js"></script>
+<script>
+
+  const homeScreen = document.getElementById("homeScreen");
+  const howToPlayScreen = document.getElementById("howToPlayScreen");
+  const gameCanvas = document.getElementById("gameCanvas");
+
+
+  // Show game canvas
+  document.getElementById("playBtn").addEventListener("click", () => {
+    homeScreen.style.display = "none";
+    howToPlayScreen.style.display = "none";
+    gameCanvas.style.display = "block";
+    startGame(); // start the game loop
+  });
+
+  // Show How to Play screen
+  document.getElementById("howToPlayBtn").addEventListener("click", () => {
+    homeScreen.style.display = "none";
+    howToPlayScreen.style.display = "flex";
+  });
+
+  // Back to home screen
+  document.getElementById("backBtn").addEventListener("click", () => {
+    homeScreen.style.display = "flex";
+    howToPlayScreen.style.display = "none";
+  });
+
+</script>
+
+</body>
+</html>

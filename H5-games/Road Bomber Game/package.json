@@ -1,0 +1,21 @@
+{
+  "name": "h5-jump-game",
+  "version": "1.0.0",
+  "description": "A simple HTML5 jumping game where the player jumps to the ceiling and moves forward.",
+  "main": "src/game.js",
+  "scripts": {
+    "start": "live-server src"
+  },
+  "keywords": [
+    "html5",
+    "game",
+    "jump",
+    "javascript"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}
