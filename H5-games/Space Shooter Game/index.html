@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Shooter - H5 Game</title>
+    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <div id="game-ui">
+            <div id="score">Score: <span id="score-value">0</span></div>
+            <div id="lives">Lives: <span id="lives-value">3</span></div>
+            <div id="level">Level: <span id="level-value">1</span></div>
+            <div id="power-up-status" style="background: rgba(0,0,0,0.8); color: #00ff88; padding: 5px; margin-top: 10px; font-size: 12px;">
+                <div style="color: #ffff00; font-weight: bold;">Active Power-Ups:</div>
+                <div id="active-power-ups">None</div>
+            </div>
+        </div>
+        
+                    <canvas id="game-canvas" width="1920" height="1080"></canvas>
+        
+        <div id="game-overlay">
+            <div id="start-screen" class="screen">
+                <h1>SPACE SHOOTER</h1>
+                <p>Defend Earth from alien invasion!</p>
+                <button id="start-btn" class="btn">START GAME</button>
+                <button id="how-to-play-btn" class="btn">HOW TO PLAY</button>
+                <button id="music-toggle-btn" class="btn">🎵 MUSIC: ON</button>
+    
+                <div class="controls">
+                    <p><strong>Controls:</strong></p>
+                    <p>WASD or Arrow Keys - Move</p>
+                    <p>Left Click - Shoot</p>
+                    <p>P - Pause</p>
+                </div>
+            </div>
+            
+            <div id="how-to-play-screen" class="screen hidden">
+                <h2>HOW TO PLAY</h2>
+                
+                <div class="section">
+                    <h3>🎯 OBJECTIVES</h3>
+                    <p>Defend Earth from waves of alien invaders!</p>
+                    <ul>
+                        <li>Survive as long as possible</li>
+                        <li>Destroy enemies to earn points</li>
+                        <li>Advance through levels</li>
+                        <li>Collect power-ups for advantages</li>
+                    </ul>
+                </div>
+                
+                <div class="section">
+                    <h3>⚡ POWER-UPS</h3>
+                    <div class="power-up-grid">
+                        <div class="power-up-item">
+                            <img src="src/assets/images/Galaga Health Power-up.png" style="width:50px;height:50px;">
+                            <div class="power-up-info">
+                                <strong>Health</strong><br>
+                                <span style="color: #ff8800;">+1 Life (Max 3)</span>
+                            </div>
+                        </div>
+                        <div class="power-up-item">
+                            <img src="src/assets/images/Galaga Extra Life Power-up.png" style="width:50px;height:50px;">
+                            <div class="power-up-info">
+                                <strong>Extra Life</strong><br>
+                                <span style="color: #ff8800;">+1 Life (Max 5)</span>
+                            </div>
+                        </div>
+                        <div class="power-up-item">
+                            <img src="src/assets/images/Galaga Shield Power-up.png" style="width:50px;height:50px;">
+                            <div class="power-up-info">
+                                <strong>Shield</strong><br>
+                                <span style="color: #00aaff;">10s Invulnerability</span>
+                            </div>
+                        </div>
+                        <div class="power-up-item">
+                            <img src="src/assets/images/Galaga Rapid Fire Power-up.png" style="width:50px;height:50px;">
+                            <div class="power-up-info">
+                                <strong>Rapid Fire</strong><br>
+                                <span style="color: #ff66ff;">10s Fast Shooting</span>
+                            </div>
+                        </div>
+                        <div class="power-up-item">
+                            <img src="src/assets/images/Galaga Power Power-up.png" style="width:50px;height:50px;">
+                            <div class="power-up-info">
+                                <strong>Power</strong><br>
+                                <span style="color: #ffaa00;">10s Strong Bullets</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>👾 ENEMY TYPES</h3>
+                    <div class="enemy-grid">
+                        <div class="enemy-item">
+                            <img src="src/assets/images/Basic.png" style="width:50px;height:50px;">
+                            <div class="enemy-info">
+                                <strong>Basic</strong><br>
+                                <span style="color: #ff8888;">1 HP, Straight movement</span><br>
+                            </div>
+                        </div>
+                        <div class="enemy-item">
+                            <img src="src/assets/images/fast enemy.png" style="width:50px;height:50px;">
+                            <div class="enemy-info">
+                                <strong>Fast</strong><br>
+                                <span style="color: #ffaa88;">1 HP, Zigzag movement</span><br>
+                            </div>
+                        </div>
+                        <div class="enemy-item">
+                            <img src="src/assets/images/Tank.png" style="width:50px;height:50px;">
+                            <div class="enemy-info">
+                                <strong>Tank</strong><br>
+                                <span style="color: #8888ff;">3 HP, Slow but tough</span><br>
+                            </div>
+                        </div>
+                        <div class="enemy-item">
+                            <img src="src/assets/images/Swarm.png" style="width:50px;height:50px;">
+                            <div class="enemy-info">
+                                <strong>Swarm</strong><br>
+                                <span style="color: #88ff88;">1 HP, Circular movement</span><br>
+                            </div>
+                        </div>
+                        <div class="enemy-item">
+                            <img src="src/assets/images/Sniper.png" style="width:50px;height:50px;">
+                            <div class="enemy-info">
+                                <strong>Sniper</strong><br>
+                                <span style="color: #ffff88;">2 HP, Accurate aim</span><br>
+                            </div>
+                        </div>
+                        <div class="enemy-item">
+                            <img src="src/assets/images/Galaga Omnidirectional Kamikaze Ship.png" style="width:50px;height:50px;">
+                            <div class="enemy-info">
+                                <strong>Kamikaze</strong><br>
+                                <span style="color: #ff8888;">1 HP, Moves toward player</span><br>
+                            </div>
+                        </div>
+                        <div class="enemy-item">
+                            <img src="src/assets/images/Galaga Mini Boss Ship.png" style="width:50px;height:50px;">
+                            <div class="enemy-info">
+                                <strong>Boss</strong><br>
+                                <span style="color: #ff88aa;">6 HP, Figure-8 movement</span><br>
+                            </div>
+                        </div>
+                        <div class="enemy-item">
+                            <img src="src/assets/images/Galaga Big Boss Ship.png" style="width:50px;height:50px;">
+                            <div class="enemy-info">
+                                <strong>Mega Boss</strong><br>
+                                <span style="color: #ff88ff;">9 HP, Complex movement</span><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>🎮 CONTROLS</h3>
+                    <div class="controls-grid">
+                        <div class="control-item">
+                            <strong>Movement:</strong><br>
+                            <span>WASD or Arrow Keys</span>
+                        </div>
+                        <div class="control-item">
+                            <strong>Shoot:</strong><br>
+                            <span>Left Click</span>
+                        </div>
+                        <div class="control-item">
+                            <strong>Pause:</strong><br>
+                            <span>P Key</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>🚀 GAMEPLAY TIPS</h3>
+                    <ul>
+                        <li>Stay at the bottom of the screen</li>
+                        <li>Your bullets bounce off walls</li>
+                        <li>Watch out for bouncing bullets!</li>
+                        <li>Collect power-ups before they disappear</li>
+                    </ul>
+                </div>
+                
+                <button id="back-to-menu-btn" class="btn">BACK TO MENU</button>
+            </div>
+            
+            <div id="debug-message" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.9); color: #00ff88; padding: 20px; border: 2px solid #00ff88; display: none; z-index: 100;">
+                <h3>Debug Message</h3>
+                <p id="debug-text"></p>
+                <button onclick="document.getElementById('debug-message').style.display='none'" class="btn">OK</button>
+            </div>
+            
+            <div id="pause-screen" class="screen hidden">
+                <h2>GAME PAUSED</h2>
+                <button id="resume-btn" class="btn">RESUME</button>
+                <button id="restart-btn" class="btn">RESTART</button>
+                <button id="menu-btn-pause" class="btn">MENU</button>
+                <button id="music-toggle-btn-pause" class="btn">🎵 MUSIC: ON</button>
+            </div>
+            
+            <div id="game-over-screen" class="screen hidden">
+                <h2>GAME OVER</h2>
+                <p>Final Score: <span id="final-score">0</span></p>
+                <button id="play-again-btn" class="btn">PLAY AGAIN</button>
+                <button id="menu-btn-gameover" class="btn">MENU</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="src/js/utils/Vector2.js"></script>
+    <script src="src/js/utils/InputManager.js"></script>
+    <script src="src/js/utils/AudioManager.js"></script>
+    <script src="src/js/utils/ObjectPool.js"></script>
+    <script src="src/js/utils/SpatialHash.js"></script>
+    <script src="src/js/utils/PerformanceMonitor.js"></script>
+    <script src="src/js/utils/CanvasOptimizer.js"></script>
+    <script src="src/js/components/GameObject.js"></script>
+    <script src="src/js/components/Player.js"></script>
+    <script src="src/js/components/Enemy.js"></script>
+    <script src="src/js/components/Bullet.js"></script>
+    <script src="src/js/components/Particle.js"></script>
+    <script src="src/js/game/GameState.js"></script>
+    <script src="src/js/game/GameManager.js"></script>
+    <script src="src/js/game/Renderer.js"></script>
+    <script src="src/js/game/CollisionManager.js"></script>
+    <script src="src/js/game/EnemySpawner.js"></script>
+    <script src="src/js/game/PowerUp.js"></script>
+    <script src="main.js"></script>
+</body>
+</html> 
